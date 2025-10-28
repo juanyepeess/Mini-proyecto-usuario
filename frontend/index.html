@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuarios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 8px;
+      width: 250px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <form id="formRegistro">
+    <h2>Registro de Usuario</h2>
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="email" id="correo" placeholder="Correo" required>
+    <input type="password" id="contraseña" placeholder="Contraseña" required>
+    <button type="submit">Registrar</button>
+    <p id="mensaje"></p>
+  </form>
+
+  <script>
+    document.getElementById('formRegistro').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const correo = document.getElementById('correo').value;
+      const contraseña = document.getElementById('contraseña').value;
+
+      const respuesta = await fetch('http://localhost:3000/api/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, correo, contraseña })
+      });
+
+      const data = await respuesta.json();
+      document.getElementById('mensaje').textContent = data.mensaje;
+    });
+  </script>
+</body>
+</html>
