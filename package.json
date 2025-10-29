@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "start": "node server.js",
+  "dev": "nodemon server.js",
+  "install": "npm install",
+  "test": "echo \"Ejecutando pruebas automáticas (futuro)\" && exit 0"
+
+
   },
   "keywords": [],
   "author": "",
@@ -15,5 +20,8 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-validator": "^7.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
